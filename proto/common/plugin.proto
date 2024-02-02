@@ -1,0 +1,21 @@
+syntax = "proto3";
+package plugin;
+
+option go_package = "github.com/f4nd0y/plugin-runner/proto/common";
+
+// go:plugin type=plugin version=1
+service Common {
+  rpc Prepare(Request) returns (Reply) {}
+  rpc Run(Request) returns (Reply) {}
+  rpc Check(Request) returns (Reply) {}
+  rpc Rollback(Request) returns (Reply) {}
+}
+
+message Reply {
+  int32 Code = 1;
+  string Message = 2;
+}
+
+message Request {
+  string Args = 1;
+}
